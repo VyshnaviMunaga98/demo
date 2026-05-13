@@ -6,6 +6,7 @@ require("./src/config/db");
 const dashboardRoutes = require("./src/routes/dashboardRoutes");
 const auditRoutes = require("./src/routes/auditRoutes");
 const analyticsRoutes = require("./src/routes/analyticsRoutes");
+const opportunityRoutes = require("./src/routes/opportunityRoutes");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 app.use("/dashboard", dashboardRoutes);
 app.use("/audits", auditRoutes);
 app.use("/analytics", analyticsRoutes);
+app.use("/opportunities", opportunityRoutes);
 
 const PORT = 4000;
 
