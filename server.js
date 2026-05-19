@@ -9,6 +9,8 @@ const analyticsRoutes = require("./src/routes/analyticsRoutes");
 const opportunityRoutes = require("./src/routes/opportunityRoutes");
 const authRoutes = require("./src/routes/authRoutes");
 const verifyToken = require("./src/middleware/authMiddleware");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec =require("./swagger");
 
 const app = express();
 
@@ -27,6 +29,7 @@ app.use("/audits", verifyToken, auditRoutes);
 app.use("/dashboard", verifyToken, dashboardRoutes);
 app.use("/analytics", verifyToken, analyticsRoutes);
 app.use("/opportunities", verifyToken, opportunityRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 
