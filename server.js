@@ -7,6 +7,8 @@ const dashboardRoutes = require("./src/routes/dashboardRoutes");
 const auditRoutes = require("./src/routes/auditRoutes");
 const analyticsRoutes = require("./src/routes/analyticsRoutes");
 const opportunityRoutes = require("./src/routes/opportunityRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const verifyToken = require("./src/middleware/authMiddleware");
 
 const app = express();
 
@@ -20,10 +22,13 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/dashboard", dashboardRoutes);
-app.use("/audits", auditRoutes);
-app.use("/analytics", analyticsRoutes);
-app.use("/opportunities", opportunityRoutes);
+app.use("/auth", authRoutes);
+app.use("/audits", verifyToken, auditRoutes);
+app.use("/dashboard", verifyToken, dashboardRoutes);
+app.use("/analytics", verifyToken, analyticsRoutes);
+app.use("/opportunities", verifyToken, opportunityRoutes);
+
+
 
 const PORT = 4000;
 
